@@ -1,0 +1,221 @@
+/* =========================================================================
+   #code — liquid-glass page loader
+   Pure CSS + a ~60-line controller (code-loader.js). No dependencies.
+   All classes are namespaced .cl-* ; the only globals are
+   html.cl-lock, html.cl-done, html.cl-skip and [data-cl-reveal].
+   ========================================================================= */
+
+.cl {
+  /* brand tokens (white theme) */
+  --cl-ink: #0B0B0B;
+  --cl-lime: #DFFF00;
+  --cl-paper: #FFFFFF;
+  --cl-paper-2: #F7F7F4;
+  --cl-rule: #E5E5DE;
+  --cl-muted: #6B6B73;
+  --cl-body: #3A3A42;
+  --cl-fringe-a: #B5D300;   /* lime dispersion fringe   */
+  --cl-fringe-b: #8C7BFF;   /* violet dispersion fringe */
+  --cl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* geometry — desktop */
+  --cl-halo-0: 270px;  --cl-halo-w: 560px; --cl-halo-h: 440px; --cl-halo-r: 124px;
+  --cl-lens-0: 168px;  --cl-lens-w: 420px; --cl-lens-h: 300px; --cl-lens-r: 78px;
+  --cl-word: 120px;    --cl-tag: 14px;     --cl-gap: 10px;
+  --cl-slide: 300px;   --cl-fringe: 9px;   --cl-smear: 7px;
+  --cl-center: 46%;    --cl-status-gap: 262px; --cl-status-w: 300px;
+
+  /* timing — keep --cl-in equal to data-cl-min in the markup */
+  --cl-in: 2.6s;
+
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(ellipse 70% 60% at 50% var(--cl-center), var(--cl-paper) 0%, var(--cl-paper-2) 100%);
+  transition: opacity .45s ease .1s, visibility 0s linear .6s;
+  /* failsafe: if the controller never runs, get out of the way after 10s */
+  animation: cl-failsafe 0s linear 10s forwards;
+}
+
+@media (max-width: 640px) {
+  .cl {
+    --cl-halo-0: 160px;  --cl-halo-w: 300px; --cl-halo-h: 250px; --cl-halo-r: 76px;
+    --cl-lens-0: 104px;  --cl-lens-w: 236px; --cl-lens-h: 180px; --cl-lens-r: 50px;
+    --cl-word: 68px;     --cl-tag: 9px;      --cl-gap: 6px;
+    --cl-slide: 170px;   --cl-fringe: 6px;   --cl-smear: 4px;
+    --cl-center: 44%;    --cl-status-gap: 160px; --cl-status-w: 220px;
+  }
+}
+
+html.cl-lock, html.cl-lock body { overflow: hidden; }
+.cl.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* the site's line motif, drawn during the intro */
+.cl-line { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cl-line--m { display: none; }
+@media (max-width: 640px) { .cl-line--d { display: none; } .cl-line--m { display: block; } }
+.cl-line path {
+  fill: none; stroke: var(--cl-ink); stroke-opacity: .9; stroke-width: 1.75;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: cl-draw var(--cl-in) cubic-bezier(.45, 0, .2, 1) forwards;
+}
+
+/* stage: halo + lens share one grid cell so they stay centred while resizing */
+.cl-stage {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: calc(var(--cl-center) * 2);
+  display: grid; place-items: center;
+}
+.cl-halo, .cl-lens { grid-area: 1 / 1; box-sizing: border-box; }
+
+.cl-halo {
+  width: var(--cl-halo-w); height: var(--cl-halo-h); border-radius: var(--cl-halo-r);
+  background: rgba(255, 255, 255, .6);
+  border: 1px solid var(--cl-rule);
+  box-shadow:
+    inset 0 1px 0 #FFFFFF,
+    inset 0 -18px 40px rgba(11, 11, 11, .035),
+    0 40px 90px rgba(11, 11, 11, .08),
+    0 2px 6px rgba(11, 11, 11, .04);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  animation: cl-halo-in var(--cl-in) linear both;
+}
+
+.cl-lens {
+  position: relative; overflow: hidden; isolation: isolate;
+  width: var(--cl-lens-w); height: var(--cl-lens-h); border-radius: var(--cl-lens-r);
+  background: linear-gradient(180deg, #FCFCFA 0%, #EEEEE8 100%);
+  border: 1px solid rgba(255, 255, 255, .9);
+  box-shadow:
+    inset 0 2px 2px rgba(255, 255, 255, .95),
+    inset 0 -14px 28px rgba(11, 11, 11, .07),
+    inset 0 0 0 1px rgba(11, 11, 11, .05),
+    0 22px 44px rgba(11, 11, 11, .12);
+  animation: cl-lens-in var(--cl-in) linear both;
+}
+
+/* four stacked copies of the wordmark make the glass:
+   smear (rim) + two colour fringes (rim) + crisp core (centre) */
+.cl-layer { position: absolute; inset: 0; display: grid; place-items: center; }
+.cl-rim {
+  -webkit-mask-image: radial-gradient(closest-side, transparent 50%, #000 96%);
+          mask-image: radial-gradient(closest-side, transparent 50%, #000 96%);
+}
+.cl-core {
+  -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+          mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
+}
+.cl-track {
+  display: flex; flex-direction: column; align-items: center; gap: var(--cl-gap);
+  white-space: nowrap; color: var(--cl-ink);
+  animation: cl-slide var(--cl-in) linear both;
+}
+.cl-word {
+  font-family: var(--cl-mono); font-weight: 700;
+  font-size: var(--cl-word); line-height: 1; letter-spacing: -0.05em;
+}
+.cl-hash { background: var(--cl-lime); padding: 0 .06em; }
+.cl-tag {
+  font-family: var(--cl-mono); font-size: var(--cl-tag);
+  letter-spacing: .28em; color: var(--cl-body);
+}
+.cl-smear .cl-track { scale: 1.22; filter: blur(var(--cl-smear)); opacity: .5; }
+.cl-fa, .cl-fb { mix-blend-mode: multiply; }
+.cl-fa .cl-track { color: var(--cl-fringe-a); margin-left: calc(var(--cl-fringe) * -1); }
+.cl-fb .cl-track { color: var(--cl-fringe-b); margin-left: var(--cl-fringe); }
+.cl-fa .cl-hash, .cl-fb .cl-hash, .cl-smear .cl-hash { background: none; }
+.cl-fa .cl-tag, .cl-fb .cl-tag { color: inherit; }
+.cl-core .cl-track {
+  animation: cl-slide var(--cl-in) linear both, cl-focus var(--cl-in) ease-out both;
+}
+
+/* light on the glass */
+.cl-glare {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, 0) 34%),
+    radial-gradient(90% 60% at 50% 115%, rgba(11, 11, 11, .07), transparent 70%);
+}
+.cl-caustic {
+  position: absolute; right: -10%; bottom: -18%; width: 55%; height: 56%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(223, 255, 0, .6), rgba(223, 255, 0, 0));
+  filter: blur(8px); mix-blend-mode: multiply; pointer-events: none;
+}
+.cl-sweep {
+  position: absolute; inset: -20% -60%; pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .85) 49%, rgba(223, 255, 0, .35) 52%, transparent 60%);
+  translate: -70% 0;
+  animation: cl-sweep .8s cubic-bezier(.4, 0, .2, 1) calc(var(--cl-in) - .25s) both;
+}
+
+/* build status under the glass */
+.cl-status {
+  position: absolute; left: 50%;
+  top: calc(var(--cl-center) + var(--cl-status-gap));
+  width: var(--cl-status-w); margin-left: calc(var(--cl-status-w) / -2);
+  display: flex; flex-direction: column; gap: 10px;
+  font-family: var(--cl-mono);
+  animation: cl-status-in .5s ease .45s both;
+}
+.cl-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; letter-spacing: .06em; color: var(--cl-muted);
+}
+.cl-pct { color: var(--cl-ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+.cl-bar { height: 3px; border-radius: 999px; background: var(--cl-rule); overflow: hidden; }
+.cl-bar > span {
+  display: block; height: 100%; background: var(--cl-ink);
+  transform: scaleX(0); transform-origin: left center;
+}
+.cl-caret {
+  display: inline-block; width: 7px; height: 13px; margin-left: 4px; vertical-align: -2px;
+  background: var(--cl-ink); animation: cl-blink 1.1s steps(1) infinite;
+}
+
+/* exit (controller adds .is-leaving) */
+.cl.is-leaving .cl-halo   { animation: cl-halo-out .6s cubic-bezier(.7, 0, .84, 0) forwards; }
+.cl.is-leaving .cl-lens   { animation: cl-lens-out .55s cubic-bezier(.5, 0, .75, 0) forwards; }
+.cl.is-leaving .cl-status { animation: cl-fade-out .2s ease forwards; }
+.cl.is-leaving .cl-line   { opacity: 0; transition: opacity .4s ease .1s; }
+
+/* page content rise-in after the loader (opt-in with data-cl-reveal) */
+html.cl-lock [data-cl-reveal] { opacity: 0; translate: 0 28px; }
+html.cl-done [data-cl-reveal] {
+  animation: cl-reveal .8s cubic-bezier(.2, .7, .2, 1) calc(.15s + var(--cl-delay, 0ms)) both;
+}
+html.cl-skip [data-cl-reveal] { animation: none; }
+
+/* ---------------------------------------------------------------- keyframes */
+@keyframes cl-halo-in {
+  0%   { width: var(--cl-halo-0); height: var(--cl-halo-0); border-radius: calc(var(--cl-halo-0) / 2); opacity: 0; scale: .82; }
+  19%  { width: var(--cl-halo-0); height: var(--cl-halo-0); border-radius: calc(var(--cl-halo-0) / 2); opacity: 1; scale: 1;
+         animation-timing-function: cubic-bezier(.65, 0, .2, 1); }
+  90%, 100% { width: var(--cl-halo-w); height: var(--cl-halo-h); border-radius: var(--cl-halo-r); opacity: 1; scale: 1; }
+}
+@keyframes cl-lens-in {
+  0%   { width: var(--cl-lens-0); height: var(--cl-lens-0); border-radius: calc(var(--cl-lens-0) / 2); opacity: 0; scale: .7; }
+  19%  { width: var(--cl-lens-0); height: var(--cl-lens-0); border-radius: calc(var(--cl-lens-0) / 2); opacity: 1; scale: 1;
+         animation-timing-function: cubic-bezier(.65, 0, .2, 1); }
+  90%, 100% { width: var(--cl-lens-w); height: var(--cl-lens-h); border-radius: var(--cl-lens-r); opacity: 1; scale: 1; }
+}
+@keyframes cl-slide {
+  0%, 19% { translate: var(--cl-slide) 0; animation-timing-function: cubic-bezier(.3, .1, .2, 1); }
+  100%    { translate: 0 0; }
+}
+@keyframes cl-focus   { 0%, 13% { filter: blur(10px); } 65%, 100% { filter: blur(0); } }
+@keyframes cl-draw    { to { stroke-dashoffset: 0; } }
+@keyframes cl-sweep   { from { translate: -70% 0; } to { translate: 70% 0; } }
+@keyframes cl-status-in { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+@keyframes cl-blink   { 50% { opacity: 0; } }
+@keyframes cl-halo-out { from { opacity: 1; scale: 1; } to { opacity: 0; scale: 1.3; } }
+@keyframes cl-lens-out { 0% { opacity: 1; scale: 1; } 55% { opacity: .25; } 100% { opacity: 0; scale: 2.2; } }
+@keyframes cl-fade-out { to { opacity: 0; } }
+@keyframes cl-reveal  { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
+@keyframes cl-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .cl { display: none !important; }
+  html.cl-lock, html.cl-lock body { overflow: auto; }
+  [data-cl-reveal] { opacity: 1 !important; translate: none !important; animation: none !important; }
+}

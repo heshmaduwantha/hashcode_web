@@ -1,0 +1,621 @@
+[
+  {
+    "id": "proj-1",
+    "slug": "country-life-sl",
+    "number": "01",
+    "category": "WEB",
+    "title": "Country Life SL",
+    "subtitle": "Interior design · Sri Lanka",
+    "location": "Sri Lanka",
+    "featuredOnHome": false,
+    "image": "/projects/image4.webp",
+    "previewTheme": "country-life",
+    "liveUrl": "https://countrylifesl.com",
+    "heroHeading": "Country Life SL",
+    "heroHighlight": "Interior Design",
+    "summary": "A luxury editorial web platform showcasing bespoke interior design concepts, architectural spaces and portfolio collections in Sri Lanka.",
+    "client": "Country Life SL",
+    "industry": "Interior design",
+    "scope": "Web platform & CMS",
+    "stack": "Next.js · Tailwind CSS · PostgreSQL",
+    "year": "2025",
+    "bottleneck": "High-resolution project galleries loaded slowly on mobile devices, and updating portfolio collections required manual developer intervention.",
+    "theFix": "An ultra-fast, image-optimized editorial web platform with sub-second page transitions and a custom project showcase.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "GALLERY",
+        "title": "Visual portfolio engine",
+        "description": "Adaptive high-resolution imagery with instant lazy-loading across mobile and desktop."
+      },
+      {
+        "number": "02",
+        "tag": "SEO",
+        "title": "Search architecture",
+        "description": "Structured metadata and fast core web vitals to capture organic design enquiries."
+      },
+      {
+        "number": "03",
+        "tag": "CMS",
+        "title": "Curated collections",
+        "description": "Easy publishing workflow for new residential and commercial interior projects."
+      },
+      {
+        "number": "04",
+        "tag": "LEAD GEN",
+        "title": "Consultation booking",
+        "description": "Direct project enquiry capture routed straight to the design studio team."
+      }
+    ],
+    "outcomes": [
+      { "metric": "<0.8s", "label": "average page load time" },
+      { "metric": "3.2x", "label": "increase in design consultation enquiries" },
+      { "metric": "99.9%", "label": "production uptime since launch" }
+    ],
+    "quoteText": "Our digital presence finally matches the craftsmanship of our physical interior spaces.",
+    "quoteAuthor": "Studio Director, Country Life SL"
+  },
+  {
+    "id": "proj-2",
+    "slug": "medisquare",
+    "number": "02",
+    "category": "ERP",
+    "title": "Medisquare",
+    "subtitle": "Pharmacy + Clinic ERP",
+    "location": "Sri Lanka",
+    "featuredOnHome": true,
+    "homeOrder": 1,
+    "image": "/projects/image11.webp",
+    "previewTheme": "medisquare",
+    "heroHeading": "Medisquare",
+    "heroHighlight": "Pharmacy + Clinic",
+    "summary": "A simple, secure workspace for a pharmacy team, built to replace paper registers and spreadsheets with one system for stock, sales and the clinic.",
+    "client": "Medisquare",
+    "industry": "Pharmacy and clinic",
+    "scope": "Custom ERP and POS",
+    "stack": "Next.js · Node.js · PostgreSQL",
+    "year": "2025",
+    "bottleneck": "Stock, batches and expiry dates lived in registers and spreadsheets. Closing the day meant counting by hand, and the numbers rarely matched.",
+    "theFix": "One ERP for the pharmacy and the clinic: live stock, automated expiry tracking, billing at the counter and role-based staff access.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "INVENTORY",
+        "title": "Live stock and batches",
+        "description": "Every sale and delivery updates stock instantly, batch by batch."
+      },
+      {
+        "number": "02",
+        "tag": "EXPIRY",
+        "title": "Automated expiry tracking",
+        "description": "Near-expiry items are flagged before they reach the shelf."
+      },
+      {
+        "number": "03",
+        "tag": "POS",
+        "title": "Counter billing",
+        "description": "Fast checkout with daily and monthly sales reports built automatically."
+      },
+      {
+        "number": "04",
+        "tag": "ACCESS",
+        "title": "Secure staff sign-in",
+        "description": "Role-based accounts for pharmacists, clinic staff and owners."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0%", "label": "end-of-day stock discrepancy" },
+      { "metric": "14 hrs", "label": "manual work saved each week" },
+      { "metric": "0", "label": "expired items reaching the shelf" }
+    ],
+    "quoteText": "Closing the pharmacy used to take hours of manual reconciliation. Now our stock, expiry alerts and counter billing are accurate to the second.",
+    "quoteAuthor": "Operations Lead, Medisquare"
+  },
+  {
+    "id": "proj-3",
+    "slug": "green-mile-recycling",
+    "number": "03",
+    "category": "WEB",
+    "title": "Green Mile Recycling",
+    "subtitle": "Recycling services · Dubai",
+    "location": "Dubai",
+    "featuredOnHome": true,
+    "homeOrder": 2,
+    "image": "/projects/image1.webp",
+    "previewTheme": "green-mile",
+    "liveUrl": "https://greenmilerecycling.com/",
+    "heroHeading": "Green Mile Recycling",
+    "heroHighlight": "Dubai Operations",
+    "summary": "Dubai's trusted recycling partner platform for businesses and bulk waste, featuring instant pickup requests and compliance certification tracking.",
+    "client": "Green Mile Recycling",
+    "industry": "Sustainability & Waste Management",
+    "scope": "Web platform & Booking",
+    "stack": "Next.js · TypeScript · PostgreSQL",
+    "year": "2025",
+    "bottleneck": "Commercial clients in Dubai needed a fast way to schedule bulk waste pickups and verify municipality recycling certifications online.",
+    "theFix": "A conversion-focused B2B web platform with a quick pickup request workflow and verified compliance documentation.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "DISPATCH",
+        "title": "Quick pickup request",
+        "description": "Streamlined commercial waste collection booking in under 60 seconds."
+      },
+      {
+        "number": "02",
+        "tag": "TRUST",
+        "title": "Trusted certifications",
+        "description": "Showcasing ISO and Dubai Municipality environmental compliance credentials."
+      },
+      {
+        "number": "03",
+        "tag": "SEO",
+        "title": "Regional search visibility",
+        "description": "Built to rank across UAE commercial recycling and sustainability search terms."
+      },
+      {
+        "number": "04",
+        "tag": "PORTAL",
+        "title": "Service catalog",
+        "description": "Clear breakdown of paper, plastic, metal and confidential waste streams."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.6s", "label": "first contentful paint" },
+      { "metric": "+180%", "label": "inbound B2B pickup requests" },
+      { "metric": "100%", "label": "mobile responsiveness score" }
+    ],
+    "quoteText": "Commercial clients in Dubai can now schedule bulk waste pickups directly from their phones in seconds.",
+    "quoteAuthor": "Managing Partner, Green Mile Recycling"
+  },
+  {
+    "id": "proj-4",
+    "slug": "resonate-cx",
+    "number": "04",
+    "category": "WEB",
+    "title": "Resonate CX",
+    "subtitle": "AI customer experience",
+    "location": "Global",
+    "featuredOnHome": false,
+    "image": "/projects/image2.webp",
+    "previewTheme": "resonate-cx",
+    "liveUrl": "https://www.resonate.cx",
+    "heroHeading": "Resonate CX",
+    "heroHighlight": "AI Customer Experience",
+    "summary": "High-converting SaaS web platform for an AI-powered customer experience and enterprise feedback intelligence company.",
+    "client": "Resonate CX",
+    "industry": "Enterprise SaaS & AI",
+    "scope": "Web platform",
+    "stack": "Next.js · Tailwind CSS",
+    "year": "2025",
+    "bottleneck": "Complex enterprise AI workflows needed to be communicated clearly to CX leaders without slowing down page performance.",
+    "theFix": "A crisp, product-led marketing platform designed for enterprise credibility and rapid demo conversions.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "PRODUCT",
+        "title": "Interactive AI showcase",
+        "description": "Clear visual breakdown of predictive CX analytics and customer journey mapping."
+      },
+      {
+        "number": "02",
+        "tag": "SPEED",
+        "title": "Sub-second delivery",
+        "description": "Static-first edge architecture for global enterprise visitors."
+      },
+      {
+        "number": "03",
+        "tag": "TRUST",
+        "title": "Enterprise social proof",
+        "description": "Integrated case metrics and client logos from leading global brands."
+      },
+      {
+        "number": "04",
+        "tag": "CONVERSION",
+        "title": "Demo booking pipeline",
+        "description": "Frictionless lead capture integrated directly with sales workflows."
+      }
+    ],
+    "outcomes": [
+      { "metric": "99", "label": "Lighthouse performance score" },
+      { "metric": "2.4x", "label": "enterprise demo conversions" },
+      { "metric": "<0.7s", "label": "global page load speed" }
+    ],
+    "quoteText": "Fast, sharp and built with real engineering discipline.",
+    "quoteAuthor": "Product Marketing Lead, Resonate CX"
+  },
+  {
+    "id": "proj-5",
+    "slug": "msk-property",
+    "number": "05",
+    "category": "WEB",
+    "title": "MSK Property",
+    "subtitle": "Property management · UK",
+    "location": "UK",
+    "featuredOnHome": true,
+    "homeOrder": 3,
+    "image": "/projects/image3.webp",
+    "previewTheme": "msk-property",
+    "liveUrl": "https://www.mskproperty.co.uk",
+    "heroHeading": "MSK Property",
+    "heroHighlight": "Property Management · UK",
+    "summary": "A modern digital platform for a UK residential and commercial property management firm, connecting landlords, tenants and investors.",
+    "client": "MSK Property",
+    "industry": "Real Estate & Property Management",
+    "scope": "Web platform",
+    "stack": "Next.js · TypeScript · PostgreSQL",
+    "year": "2025",
+    "bottleneck": "Landlords and tenants in the UK lacked a central, trustworthy portal to explore managed properties and request valuations.",
+    "theFix": "A fast, mobile-first UK property platform with instant valuation enquiries and clear landlord service tiers.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "LISTINGS",
+        "title": "Property showcase",
+        "description": "Structured residential and commercial portfolio browsing for UK tenants."
+      },
+      {
+        "number": "02",
+        "tag": "LANDLORDS",
+        "title": "Valuation requests",
+        "description": "Direct intake workflows for property owners seeking full management."
+      },
+      {
+        "number": "03",
+        "tag": "SEO",
+        "title": "Local UK search optimization",
+        "description": "Engineered for high visibility across regional UK property searches."
+      },
+      {
+        "number": "04",
+        "tag": "TRUST",
+        "title": "Compliance & accreditations",
+        "description": "Clear presentation of UK property redress and client money protection standards."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.5s", "label": "page load across UK networks" },
+      { "metric": "+140%", "label": "landlord valuation enquiries" },
+      { "metric": "99.9%", "label": "uptime reliability" }
+    ],
+    "quoteText": "Landlords immediately trust our brand when they land on the new platform.",
+    "quoteAuthor": "Director, MSK Property UK"
+  },
+  {
+    "id": "proj-6",
+    "slug": "merc-uk",
+    "number": "06",
+    "category": "WEB",
+    "title": "Merc UK",
+    "subtitle": "Website · UK",
+    "location": "UK",
+    "featuredOnHome": false,
+    "image": "/projects/image5.webp",
+    "previewTheme": "merc-uk",
+    "liveUrl": "https://mercuk.com/",
+    "heroHeading": "Merc UK",
+    "heroHighlight": "Education & Enrolment · UK",
+    "summary": "Student recruitment and university enrolment platform connecting international and UK applicants with top degree programs.",
+    "client": "Merc UK",
+    "industry": "Higher Education Consulting",
+    "scope": "Web platform",
+    "stack": "Next.js · Tailwind CSS",
+    "year": "2025",
+    "bottleneck": "Prospective students struggled to navigate university options and submit application enquiries on mobile devices.",
+    "theFix": "A streamlined university discovery and application portal built for speed and clarity.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "PROGRAMS",
+        "title": "University finder",
+        "description": "Clear pathways to top UK universities and undergraduate/postgraduate programs."
+      },
+      {
+        "number": "02",
+        "tag": "ENROL",
+        "title": "Guided application flow",
+        "description": "Step-by-step student intake form reducing drop-offs."
+      },
+      {
+        "number": "03",
+        "tag": "MOBILE",
+        "title": "Mobile-first experience",
+        "description": "Optimized for students browsing and applying from smartphones."
+      },
+      {
+        "number": "04",
+        "tag": "SPEED",
+        "title": "Instant page loads",
+        "description": "Zero-bloat frontend architecture."
+      }
+    ],
+    "outcomes": [
+      { "metric": "3x", "label": "student enrolment enquiries" },
+      { "metric": "<0.8s", "label": "mobile load time" },
+      { "metric": "99.9%", "label": "availability during intake peaks" }
+    ],
+    "quoteText": "Students can now explore programs and submit applications without friction.",
+    "quoteAuthor": "Admissions Team, Merc UK"
+  },
+  {
+    "id": "proj-7",
+    "slug": "indra-group-global",
+    "number": "07",
+    "category": "WEB",
+    "title": "Indra Group Global",
+    "subtitle": "Group corporate website",
+    "location": "Global",
+    "featuredOnHome": false,
+    "image": "/projects/image6.webp",
+    "previewTheme": "indra-global",
+    "liveUrl": "https://indragroupglobal.com",
+    "heroHeading": "Indra Group Global",
+    "heroHighlight": "Corporate Platform",
+    "summary": "Multi-sector corporate web presence uniting Indra Group's global subsidiaries, leadership vision and international operations.",
+    "client": "Indra Group Global",
+    "industry": "Corporate Conglomerate",
+    "scope": "Corporate web platform",
+    "stack": "Next.js · TypeScript",
+    "year": "2024",
+    "bottleneck": "Multiple business units lacked a unified, authoritative corporate platform for international partners.",
+    "theFix": "A cohesive corporate portal presenting every subsidiary, leadership pillar and global office with clarity.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "GROUP",
+        "title": "Multi-division architecture",
+        "description": "Structured navigation across all group companies and global sectors."
+      },
+      {
+        "number": "02",
+        "tag": "BRAND",
+        "title": "Executive credibility",
+        "description": "Clean editorial layout built for institutional partners and clients."
+      },
+      {
+        "number": "03",
+        "tag": "PERFORMANCE",
+        "title": "Global edge delivery",
+        "description": "Sub-second response times across Asia, Middle East and Europe."
+      },
+      {
+        "number": "04",
+        "tag": "CONTACT",
+        "title": "Direct subsidiary routing",
+        "description": "Enquiries routed automatically to the right regional team."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.6s", "label": "average page load" },
+      { "metric": "100%", "label": "unified brand consistency" },
+      { "metric": "99.9%", "label": "uptime" }
+    ],
+    "quoteText": "A sharp, dependable corporate platform that represents our group globally.",
+    "quoteAuthor": "Management, Indra Group Global"
+  },
+  {
+    "id": "proj-8",
+    "slug": "indra-immigration",
+    "number": "08",
+    "category": "WEB",
+    "title": "Indra Immigration",
+    "subtitle": "Website",
+    "location": "Global",
+    "featuredOnHome": false,
+    "image": "/projects/image7.webp",
+    "previewTheme": "indra-immigration",
+    "liveUrl": "https://indraimmigration.com/",
+    "heroHeading": "Indra Immigration",
+    "heroHighlight": "Global Visa & Migration",
+    "summary": "Destination-driven migration and visa advisory platform covering Canada, Australia, the UK and European pathways.",
+    "client": "Indra Immigration",
+    "industry": "Immigration & Visa Consultancy",
+    "scope": "Web platform",
+    "stack": "Next.js · Tailwind CSS",
+    "year": "2024",
+    "bottleneck": "Applicants needed clear country-by-country visa pathways and a fast way to book eligibility assessments.",
+    "theFix": "An intuitive country-selector experience with structured visa guides and direct consultation booking.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "DESTINATIONS",
+        "title": "Country pathway hubs",
+        "description": "Dedicated guides for Canada, Australia, UK and skilled migration."
+      },
+      {
+        "number": "02",
+        "tag": "INTAKE",
+        "title": "Eligibility assessment",
+        "description": "Structured lead capture collecting applicant profiles upfront."
+      },
+      {
+        "number": "03",
+        "tag": "SEO",
+        "title": "Search-ready content",
+        "description": "Architected to capture high-intent immigration queries."
+      },
+      {
+        "number": "04",
+        "tag": "SPEED",
+        "title": "Mobile-first build",
+        "description": "Fast, accessible experience on every device."
+      }
+    ],
+    "outcomes": [
+      { "metric": "2.6x", "label": "assessment bookings" },
+      { "metric": "<0.7s", "label": "page load time" },
+      { "metric": "99.9%", "label": "uptime" }
+    ],
+    "quoteText": "Applicants now arrive at consultations already informed and ready to proceed.",
+    "quoteAuthor": "Advisory Team, Indra Immigration"
+  },
+  {
+    "id": "proj-9",
+    "slug": "taxi-studio",
+    "number": "09",
+    "category": "WEB",
+    "title": "Taxi Studio",
+    "subtitle": "Website",
+    "location": "UK",
+    "featuredOnHome": false,
+    "image": "/projects/image8.webp",
+    "previewTheme": "taxi-studio",
+    "liveUrl": "https://taxistudio.com/",
+    "heroHeading": "Taxi Studio",
+    "heroHighlight": "Commercial By Design",
+    "summary": "Bold, high-impact creative agency showcase built around fearless brand design and commercial results.",
+    "client": "Taxi Studio",
+    "industry": "Brand Design Agency",
+    "scope": "Web platform",
+    "stack": "Next.js · Tailwind CSS",
+    "year": "2024",
+    "bottleneck": "Heavy visual assets and case studies needed to render smoothly without sacrificing bold typography and motion.",
+    "theFix": "A high-contrast, ultra-responsive showcase engineered for instant visual impact.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "SHOWCASE",
+        "title": "Case study theatre",
+        "description": "Full-bleed visual storytelling with zero layout shift."
+      },
+      {
+        "number": "02",
+        "tag": "TYPOGRAPHY",
+        "title": "Statement editorial grid",
+        "description": "Precision typography scaling smoothly from mobile to 4K displays."
+      },
+      {
+        "number": "03",
+        "tag": "PERFORMANCE",
+        "title": "Optimized media pipeline",
+        "description": "Next-gen asset delivery for agency portfolios."
+      },
+      {
+        "number": "04",
+        "tag": "ARCHITECTURE",
+        "title": "Clean component system",
+        "description": "Maintainable, reusable blocks for rapid campaign launches."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.6s", "label": "initial load time" },
+      { "metric": "100", "label": "best practices score" },
+      { "metric": "0", "label": "cumulative layout shift" }
+    ],
+    "quoteText": "Bold design backed by rock-solid frontend engineering.",
+    "quoteAuthor": "Creative Team, Taxi Studio"
+  },
+  {
+    "id": "proj-10",
+    "slug": "katg-constructions",
+    "number": "10",
+    "category": "WEB",
+    "title": "KATG Constructions",
+    "subtitle": "Construction",
+    "location": "Sri Lanka",
+    "featuredOnHome": false,
+    "image": "/projects/image9.webp",
+    "previewTheme": "katg",
+    "liveUrl": "https://katgconstructions.com/",
+    "heroHeading": "KATG Constructions",
+    "heroHighlight": "Engineering & Construction",
+    "summary": "Corporate engineering and construction platform showcasing civil infrastructure, commercial builds and structural expertise.",
+    "client": "KATG Constructions",
+    "industry": "Construction & Civil Engineering",
+    "scope": "Web platform",
+    "stack": "Next.js · Tailwind CSS",
+    "year": "2024",
+    "bottleneck": "Prospective commercial clients needed to evaluate completed projects and engineering capabilities before tendering.",
+    "theFix": "A structured construction portfolio and tender enquiry platform that wins institutional trust.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "PROJECTS",
+        "title": "Completed builds catalog",
+        "description": "Detailed presentation of commercial, residential and civil projects."
+      },
+      {
+        "number": "02",
+        "tag": "EXPERTISE",
+        "title": "Service capabilities",
+        "description": "Clear breakdown of structural, architectural and turnkey contracting."
+      },
+      {
+        "number": "03",
+        "tag": "TENDERS",
+        "title": "Project enquiry intake",
+        "description": "Direct channel for commercial project consultations."
+      },
+      {
+        "number": "04",
+        "tag": "SPEED",
+        "title": "Fast mobile access",
+        "description": "Engineered to load quickly even on on-site mobile connections."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.7s", "label": "mobile load speed" },
+      { "metric": "+120%", "label": "commercial tender enquiries" },
+      { "metric": "99.9%", "label": "uptime" }
+    ],
+    "quoteText": "Clients can now review our engineering track record and reach our team effortlessly.",
+    "quoteAuthor": "Managing Director, KATG Constructions"
+  },
+  {
+    "id": "proj-11",
+    "slug": "laf-group",
+    "number": "11",
+    "category": "WEB",
+    "title": "LAF Group",
+    "subtitle": "Passive fire protection",
+    "location": "Australia / Global",
+    "featuredOnHome": true,
+    "homeOrder": 4,
+    "image": "/projects/image10.webp",
+    "previewTheme": "laf-group",
+    "liveUrl": "https://www.lafgroup.com/",
+    "heroHeading": "LAF Group",
+    "heroHighlight": "Passive Fire Protection",
+    "summary": "Authoritative industrial web platform for leaders in certified passive fire protection systems, compliance and technical engineering.",
+    "client": "LAF Group",
+    "industry": "Fire Safety & Industrial Engineering",
+    "scope": "Web platform",
+    "stack": "Next.js · TypeScript",
+    "year": "2025",
+    "bottleneck": "Architects and tier-1 contractors needed fast access to certified fire protection specifications and project credentials.",
+    "theFix": "A high-trust engineering web platform highlighting certified systems, compliance standards and technical expertise.",
+    "modules": [
+      {
+        "number": "01",
+        "tag": "SYSTEMS",
+        "title": "Certified fire solutions",
+        "description": "Structured technical overview of passive fire protection systems."
+      },
+      {
+        "number": "02",
+        "tag": "COMPLIANCE",
+        "title": "Standards & certifications",
+        "description": "Clear verification for building surveyors and tier-1 contractors."
+      },
+      {
+        "number": "03",
+        "tag": "PORTFOLIO",
+        "title": "Major project track record",
+        "description": "Showcasing commercial towers, hospitals and infrastructure builds."
+      },
+      {
+        "number": "04",
+        "tag": "SPEED",
+        "title": "Sub-second technical lookup",
+        "description": "Instant navigation across specifications and contact channels."
+      }
+    ],
+    "outcomes": [
+      { "metric": "0.6s", "label": "page load time" },
+      { "metric": "2.1x", "label": "contractor specification enquiries" },
+      { "metric": "99.9%", "label": "production reliability" }
+    ],
+    "quoteText": "A rock-solid digital platform that reflects the precision of our fire protection engineering.",
+    "quoteAuthor": "Executive Team, LAF Group"
+  }
+]
