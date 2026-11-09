@@ -38,13 +38,13 @@ export default function CaseStudyPage() {
         <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 pt-10 sm:pt-14 pb-16">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] text-neutral-400 hover:text-neutral-900 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 hover:text-neutral-900 transition-colors mb-8"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>ALL WORK</span>
           </Link>
 
-          <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+          <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
             CASE STUDY · {project.number} / {project.category}
           </div>
 
@@ -61,7 +61,7 @@ export default function CaseStudyPage() {
           </h1>
 
           <div className="mt-6 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <p className="max-w-[540px] text-[15px] sm:text-[16px] leading-[1.65] text-neutral-600">
+            <p className="max-w-[540px] text-[16.5px] sm:text-[17.5px] leading-[1.65] text-neutral-600">
               {project.summary || project.subtitle}
             </p>
 
@@ -80,46 +80,46 @@ export default function CaseStudyPage() {
 
           <div className="mt-12 grid grid-cols-2 sm:grid-cols-5 border-y border-neutral-200/90 divide-y sm:divide-y-0 sm:divide-x divide-neutral-200/90">
             <div className="py-5 sm:pr-6">
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
                 CLIENT
               </div>
-              <div className="text-[13.5px] font-bold text-neutral-950">
+              <div className="text-[16.5px] font-bold text-neutral-950">
                 {project.client || project.title}
               </div>
             </div>
 
             <div className="py-5 sm:px-6">
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
                 INDUSTRY
               </div>
-              <div className="text-[13.5px] font-bold text-neutral-950">
+              <div className="text-[16.5px] font-bold text-neutral-950">
                 {project.industry || project.subtitle}
               </div>
             </div>
 
             <div className="py-5 sm:px-6">
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
                 SCOPE
               </div>
-              <div className="text-[13.5px] font-bold text-neutral-950">
+              <div className="text-[16.5px] font-bold text-neutral-950">
                 {project.scope || "Web platform"}
               </div>
             </div>
 
             <div className="py-5 sm:px-6">
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
                 STACK
               </div>
-              <div className="text-[13.5px] font-bold text-neutral-950">
+              <div className="text-[16.5px] font-bold text-neutral-950">
                 {project.stack || "Next.js · PostgreSQL"}
               </div>
             </div>
 
             <div className="py-5 sm:pl-6 col-span-2 sm:col-span-1">
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1.5">
                 YEAR
               </div>
-              <div className="text-[13.5px] font-bold text-neutral-950">
+              <div className="text-[16.5px] font-bold text-neutral-950">
                 {project.year || "2025"}
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function CaseStudyPage() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]/80" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]/80" />
-              <span className="ml-2 text-[11px] font-mono text-neutral-400">
+              <span className="ml-2 text-[12.5px] font-mono text-neutral-400">
                 {project.slug} ·{" "}
                 {project.category === "ERP"
                   ? "staff sign-in"
@@ -148,25 +148,25 @@ export default function CaseStudyPage() {
         <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 py-12 lg:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="rounded-2xl bg-[#F6F6F4] border border-neutral-200/80 p-7 sm:p-9">
-              <div className="text-[11px] font-mono text-neutral-400 mb-2">
+              <div className="text-[12.5px] font-mono text-neutral-400 mb-2">
                 $ code diagnose
               </div>
               <h2 className="text-[26px] sm:text-[30px] font-extrabold tracking-tight text-neutral-950">
                 The bottleneck
               </h2>
-              <p className="mt-3.5 text-[14.5px] leading-[1.65] text-neutral-600">
+              <p className="mt-3.5 text-[17.5px] leading-[1.65] text-neutral-600">
                 {project.bottleneck}
               </p>
             </div>
 
             <div className="rounded-2xl bg-[#D4FF00] p-7 sm:p-9">
-              <div className="text-[11px] font-mono text-neutral-800/80 mb-2">
+              <div className="text-[12.5px] font-mono text-neutral-800/80 mb-2">
                 $ code build --fix
               </div>
               <h2 className="text-[26px] sm:text-[30px] font-extrabold tracking-tight text-neutral-950">
                 The fix
               </h2>
-              <p className="mt-3.5 text-[14.5px] leading-[1.65] text-neutral-900">
+              <p className="mt-3.5 text-[17.5px] leading-[1.65] text-neutral-900">
                 {project.theFix}
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function CaseStudyPage() {
               <h2 className="text-[32px] sm:text-[38px] font-extrabold tracking-[-0.03em] text-neutral-950 leading-none">
                 What we built
               </h2>
-              <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-neutral-400">
+              <span className="text-[12.5px] font-mono uppercase tracking-[0.16em] text-neutral-400">
                 {String(modules.length).padStart(2, "0")} MODULES
               </span>
             </div>
@@ -190,13 +190,13 @@ export default function CaseStudyPage() {
                   key={mod.number + mod.title}
                   className="rounded-2xl border border-neutral-200/90 bg-white p-6"
                 >
-                  <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
+                  <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
                     {mod.number} / {mod.tag}
                   </div>
                   <h3 className="text-[18px] font-extrabold leading-snug text-neutral-950">
                     {mod.title}
                   </h3>
-                  <p className="mt-3 text-[13px] leading-relaxed text-neutral-600">
+                  <p className="mt-3 text-[17.5px] leading-relaxed text-neutral-600">
                     {mod.description}
                   </p>
                 </div>
@@ -208,7 +208,7 @@ export default function CaseStudyPage() {
         {outcomes.length > 0 && (
           <section className="w-full bg-[#F6F6F4] py-20 lg:py-24">
             <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-              <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-8">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-8">
                 OUTCOMES
               </div>
 
@@ -218,7 +218,7 @@ export default function CaseStudyPage() {
                     <div className="text-[44px] sm:text-[54px] font-extrabold leading-none tracking-[-0.04em] text-neutral-950">
                       {outcome.metric}
                     </div>
-                    <div className="mt-2.5 text-[13px] text-neutral-600">
+                    <div className="mt-2.5 text-[17.5px] text-neutral-600">
                       {outcome.label}
                     </div>
                   </div>
@@ -231,7 +231,7 @@ export default function CaseStudyPage() {
                     &ldquo;{project.quoteText}&rdquo;
                   </blockquote>
                   {project.quoteAuthor && (
-                    <div className="mt-3 text-[11px] font-mono text-neutral-500">
+                    <div className="mt-3 text-[12.5px] font-mono text-neutral-500">
                       — {project.quoteAuthor}
                     </div>
                   )}
@@ -245,7 +245,7 @@ export default function CaseStudyPage() {
           <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 py-20 lg:py-28">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-6">
-                <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+                <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
                   NEXT PROJECT
                 </div>
                 <h2 className="text-[38px] sm:text-[48px] font-extrabold tracking-[-0.035em] text-neutral-950 leading-tight">
@@ -254,7 +254,7 @@ export default function CaseStudyPage() {
                 <div className="mt-3">
                   <Link
                     href={`/work/${nextProject.slug}`}
-                    className="inline-block text-[13.5px] font-bold text-neutral-950 border-b-[3px] border-[#D4FF00] pb-0.5 hover:opacity-80"
+                    className="inline-block text-[16.5px] font-bold text-neutral-950 border-b-[3px] border-[#D4FF00] pb-0.5 hover:opacity-80"
                   >
                     {nextProject.subtitle} ·{" "}
                     {nextProject.category === "ERP"

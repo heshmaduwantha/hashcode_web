@@ -13,6 +13,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectPreview } from "@/components/ProjectPreview";
+import { ScrollProgressLine } from "@/components/ScrollProgressLine";
+import { TypewriterHeading } from "@/components/TypewriterHeading";
 import { useProjects } from "@/context/ProjectsContext";
 
 interface ServicePillar {
@@ -213,18 +215,7 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-white text-neutral-950 overflow-x-hidden">
-      <svg
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 w-full h-full z-0 hidden md:block"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M 1050 80 C 650 380, 120 750, 210 1350 C 300 1950, 1180 1850, 1060 2650 C 940 3450, 160 3650, 260 4450 C 360 5150, 1080 5350, 960 6100"
-          fill="none"
-          stroke="#E5E5E0"
-          strokeWidth="1.15"
-        />
-      </svg>
+      <ScrollProgressLine />
 
       <Navbar />
 
@@ -237,11 +228,11 @@ export default function HomePage() {
               data-cl-reveal
               style={{ "--cl-delay": "80ms" } as React.CSSProperties}
             >
-              <div className="text-[11px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-5">
+              <div className="text-[12.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-5">
                 #CODE · ENGINEERING SCALABLE SOLUTIONS
               </div>
 
-              <h1 className="text-[46px] sm:text-[64px] lg:text-[72px] font-extrabold leading-[0.98] tracking-[-0.04em] text-neutral-950">
+              <h1 className="text-[50px] sm:text-[70px] lg:text-[78px] font-extrabold leading-[0.98] tracking-[-0.04em] text-neutral-950">
                 Have a
                 <br />
                 problem?
@@ -257,7 +248,7 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="mt-6 max-w-[460px] text-[15px] sm:text-[16.5px] leading-[1.6] text-neutral-600">
+              <p className="mt-6 max-w-[460px] text-[18.5px] sm:text-[18.5px] leading-[1.6] text-neutral-600">
                 An engineering-first software studio in Colombo. Web platforms,
                 custom ERP and POS, automation and backends for growing
                 businesses.
@@ -275,7 +266,7 @@ export default function HomePage() {
               <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                 <Link
                   href="#contact"
-                  className="group inline-flex items-center justify-between sm:justify-start gap-4 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[14px] font-semibold text-white transition-all hover:bg-neutral-800"
+                  className="group inline-flex items-center justify-between sm:justify-start gap-4 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[15.5px] font-semibold text-white transition-all hover:bg-neutral-800"
                 >
                   <span>Start a project</span>
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D4FF00] text-neutral-950 transition-transform duration-200 group-hover:rotate-45">
@@ -285,7 +276,7 @@ export default function HomePage() {
 
                 <Link
                   href="/work"
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-200 bg-white px-7 py-3 text-[14px] font-semibold text-neutral-900 transition-colors hover:bg-neutral-50 hover:border-neutral-300"
+                  className="inline-flex items-center justify-center rounded-full border border-neutral-200 bg-white px-7 py-3 text-[15.5px] font-semibold text-neutral-900 transition-colors hover:bg-neutral-50 hover:border-neutral-300"
                 >
                   See our work
                 </Link>
@@ -297,12 +288,43 @@ export default function HomePage() {
               data-cl-reveal
               style={{ "--cl-delay": "200ms" } as React.CSSProperties}
             >
-              <div className="relative mx-auto max-w-[560px]">
-                <div className="relative h-[250px] flex items-center justify-center">
+              {/* Studio Showcase Canvas Frame */}
+              <div className="relative mx-auto max-w-[580px] rounded-3xl border border-neutral-200/90 bg-gradient-to-b from-[#F9F9F7] via-[#F4F4F0] to-[#EFEFEA] p-5 sm:p-6 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.07)] overflow-hidden">
+                {/* Blueprint grid texture */}
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.45]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px)",
+                    backgroundSize: "22px 22px",
+                  }}
+                />
+
+                {/* Ambient lime core spotlight behind the cards */}
+                <div className="pointer-events-none absolute left-1/2 top-[38%] -translate-x-1/2 -translate-y-1/2 w-[360px] h-[280px] rounded-full bg-[#D4FF00]/25 blur-[65px]" />
+
+                {/* Technical frame header */}
+                <div className="relative z-10 flex items-center justify-between border-b border-neutral-200/80 pb-3 mb-4 text-[12px] font-mono text-neutral-400">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#D4FF00] opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-[#D4FF00]" />
+                    </span>
+                    <span className="font-semibold text-neutral-800 uppercase tracking-wider">
+                      STUDIO.SYS // DEPLOYMENT PREVIEW
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-neutral-400">PROD · 60FPS</span>
+                    <span className="text-neutral-300 font-bold">+</span>
+                  </div>
+                </div>
+
+                <div className="relative h-[255px] flex items-center justify-center">
                   {countryLifeProject && (
                     <Link
                       href={`/work/${countryLifeProject.slug}`}
-                      className="group absolute left-2 top-6 w-[290px] rounded-xl bg-white p-2 shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-neutral-200/80 -rotate-[4deg] transition-transform duration-300 hover:rotate-0 hover:z-30"
+                      className="group absolute left-2 top-5 w-[290px] rounded-xl bg-white p-2 shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-neutral-200/80 -rotate-[4deg] transition-transform duration-300 hover:rotate-0 hover:z-30"
                     >
                       <div className="rounded-lg overflow-hidden">
                         <ProjectPreview
@@ -310,7 +332,7 @@ export default function HomePage() {
                           className="h-[175px]"
                         />
                       </div>
-                      <div className="pt-2 pb-0.5 px-1 text-[10px] font-mono text-neutral-500">
+                      <div className="pt-2 pb-0.5 px-1 text-[12px] font-mono text-neutral-500">
                         Country Life SL · WEB
                       </div>
                     </Link>
@@ -327,19 +349,19 @@ export default function HomePage() {
                           className="h-[180px]"
                         />
                       </div>
-                      <div className="pt-2 pb-0.5 px-1 text-[10px] font-mono text-neutral-500">
+                      <div className="pt-2 pb-0.5 px-1 text-[12px] font-mono text-neutral-500">
                         Medisquare · ERP
                       </div>
                     </Link>
                   )}
                 </div>
 
-                <div className="relative z-30 mt-2 mx-auto w-[92%] rounded-xl bg-[#F9F9F8] border border-neutral-200/90 shadow-[0_16px_40px_rgba(0,0,0,0.06)] overflow-hidden">
-                  <div className="flex items-center gap-2 px-4 py-2.5 border-b border-neutral-200/70 bg-[#F3F3F1]">
+                <div className="relative z-30 mt-3 mx-auto w-full rounded-xl bg-[#FFFFFF] border border-neutral-200/90 shadow-[0_12px_32px_rgba(0,0,0,0.06)] overflow-hidden">
+                  <div className="flex items-center gap-2 px-4 py-2.5 border-b border-neutral-200/70 bg-[#F6F6F4]">
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]" />
-                    <span className="ml-1 text-[11px] font-mono text-neutral-400">
+                    <span className="ml-1 text-[12.5px] font-mono text-neutral-400">
                       ~/clients/your-business
                     </span>
                   </div>
@@ -382,7 +404,7 @@ export default function HomePage() {
         <div id="metrics" style={{ scrollMarginTop: "35vh" }}>
         <div aria-label="Studio metrics" role="region" tabIndex={0}
           className="metrics-strip w-full bg-[#F6F6F4] border-y border-neutral-200/80 py-3.5">
-          <div className="metrics-track flex w-max whitespace-nowrap text-[10.5px] font-mono uppercase tracking-[0.14em] text-neutral-600">
+          <div className="metrics-track flex w-max whitespace-nowrap text-[12px] font-mono uppercase tracking-[0.14em] text-neutral-600">
             {[0, 1].map((copy) => (
               <div key={copy} aria-hidden={copy === 1} className="flex min-w-[100vw] shrink-0 items-center justify-around">
                 {["99.9% uptime", "Sub-second page loads", "Zero end-of-day stock discrepancy", "Automated expiry tracking", "Less manual work"].map((metric) => (
@@ -399,7 +421,7 @@ export default function HomePage() {
 
         {/* MOBILE SINHALA SECTION */}
         <section className="block md:hidden mx-auto max-w-[1280px] px-5 pt-12 pb-6">
-          <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+          <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
             01 / WEB PRESENCE
           </div>
           <h2 className="text-[28px] font-extrabold leading-[1.2] tracking-tight text-neutral-950">
@@ -415,7 +437,7 @@ export default function HomePage() {
               />
             </span>
           </h2>
-          <p className="mt-3 text-[14px] leading-relaxed text-neutral-600">
+          <p className="mt-3 text-[15.5px] leading-relaxed text-neutral-600">
             Social media වල විතරක් සීමා වෙන්න එපා. 24/7 විවෘත, customer trust එක
             build කරන website එකක්.
           </p>
@@ -423,15 +445,11 @@ export default function HomePage() {
 
         {/* WHO WE ARE */}
         <section className="hidden md:block mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 pt-16 pb-16 lg:pt-20 text-center">
-          <div className="text-[10.5px] font-mono uppercase tracking-[0.18em] text-neutral-400 mb-5">
+          <div className="text-[12px] font-mono uppercase tracking-[0.18em] text-neutral-400 mb-5">
             #CODE / WHO WE ARE
           </div>
-          <h2 className="mx-auto max-w-[760px] text-[40px] sm:text-[52px] lg:text-[60px] font-extrabold leading-[1.04] tracking-[-0.04em]">
-            <span className="text-neutral-950 block">Engineering-first.</span>
-            <span className="text-neutral-500 block">Built by hands-on</span>
-            <span className="text-neutral-500 block">developers.</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-[520px] text-[15px] sm:text-[16px] leading-[1.65] text-neutral-600">
+          <TypewriterHeading />
+          <p className="mx-auto mt-6 max-w-[520px] text-[16.5px] sm:text-[17.5px] leading-[1.65] text-neutral-600">
             No account managers between you and the people writing your code. We
             architect, build and support every system ourselves.
           </p>
@@ -443,7 +461,7 @@ export default function HomePage() {
           className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 pt-8 pb-8 lg:pt-16 lg:pb-12"
         >
           <div className="block md:hidden">
-            <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
+            <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
               WHAT WE BUILD
             </div>
             <div className="divide-y divide-neutral-200 border-y border-neutral-200">
@@ -457,10 +475,10 @@ export default function HomePage() {
                       className="w-full flex items-center justify-between text-left"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-[11px] font-mono text-neutral-400">
+                        <span className="text-[12.5px] font-mono text-neutral-400">
                           {pillar.num}
                         </span>
-                        <span className="text-[17px] font-bold text-neutral-950">
+                        <span className="text-[18.5px] font-bold text-neutral-950">
                           {pillar.tabLabel
                             .replace(/^\d+\s+/, "")
                             .toLowerCase()
@@ -483,12 +501,12 @@ export default function HomePage() {
                       />
                     </button>
                     {isOpen && (
-                      <div className="mt-3 pl-7 pr-2 space-y-2 text-[13.5px] text-neutral-600">
+                      <div className="mt-3 pl-7 pr-2 space-y-2 text-[16.5px] text-neutral-600">
                         <p>{pillar.description}</p>
                         <ul className="space-y-1 pt-1">
                           {pillar.bullets.map((b) => (
                             <li key={b} className="flex items-center gap-2">
-                              <span className="inline-flex h-4 w-4 items-center justify-center rounded-xs bg-[#D4FF00] text-[10px] font-bold text-black">
+                              <span className="inline-flex h-4 w-4 items-center justify-center rounded-xs bg-[#D4FF00] text-[12px] font-bold text-black">
                                 +
                               </span>
                               <span>{b}</span>
@@ -508,7 +526,7 @@ export default function HomePage() {
               <h2 className="text-[32px] lg:text-[38px] font-extrabold tracking-[-0.03em] text-neutral-950 leading-none">
                 What we build
               </h2>
-              <span className="text-[11px] font-mono uppercase tracking-[0.16em] text-neutral-400">
+              <span className="text-[12.5px] font-mono uppercase tracking-[0.16em] text-neutral-400">
                 05 SERVICE PILLARS
               </span>
             </div>
@@ -521,7 +539,7 @@ export default function HomePage() {
                     key={pillar.id}
                     type="button"
                     onClick={() => setActiveTab(index)}
-                    className={`rounded-lg px-4 py-3 text-left text-[11px] font-mono uppercase tracking-[0.12em] transition-all cursor-pointer ${
+                    className={`rounded-lg px-4 py-3 text-left text-[12.5px] font-mono uppercase tracking-[0.12em] transition-all cursor-pointer ${
                       isActive
                         ? "bg-neutral-950 text-white font-semibold shadow-xs"
                         : "bg-[#F7F7F5] text-neutral-600 hover:bg-neutral-200/70 hover:text-neutral-950 border border-neutral-200/60"
@@ -545,13 +563,13 @@ export default function HomePage() {
 
             <div className="mt-12 grid grid-cols-12 gap-10 items-center">
               <div className="col-span-6">
-                <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+                <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
                   {currentService.tagLabel}
                 </div>
                 <h3 className="text-[36px] lg:text-[42px] font-extrabold leading-[1.06] tracking-[-0.035em] text-neutral-950 whitespace-pre-line">
                   {currentService.heading}
                 </h3>
-                <p className="mt-4 max-w-[470px] text-[15px] leading-[1.65] text-neutral-600">
+                <p className="mt-4 max-w-[470px] text-[16.5px] leading-[1.65] text-neutral-600">
                   {currentService.description}
                 </p>
 
@@ -559,9 +577,9 @@ export default function HomePage() {
                   {currentService.bullets.map((bullet) => (
                     <li
                       key={bullet}
-                      className="flex items-center gap-3 text-[13.5px] font-medium text-neutral-800"
+                      className="flex items-center gap-3 text-[16.5px] font-medium text-neutral-800"
                     >
-                      <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-[3px] bg-[#D4FF00] text-[11px] font-mono font-bold text-neutral-950">
+                      <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-[3px] bg-[#D4FF00] text-[12.5px] font-mono font-bold text-neutral-950">
                         +
                       </span>
                       <span>{bullet}</span>
@@ -572,7 +590,7 @@ export default function HomePage() {
                 <div className="mt-8">
                   <Link
                     href="#contact"
-                    className="inline-block text-[13.5px] font-bold text-neutral-950 border-b-[3px] border-[#D4FF00] pb-0.5 hover:opacity-80 transition-opacity"
+                    className="inline-block text-[16.5px] font-bold text-neutral-950 border-b-[3px] border-[#D4FF00] pb-0.5 hover:opacity-80 transition-opacity"
                   >
                     {currentService.ctaText}
                   </Link>
@@ -585,7 +603,7 @@ export default function HomePage() {
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F56]/70" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]/70" />
                     <span className="h-2.5 w-2.5 rounded-full bg-[#27C93F]/70" />
-                    <span className="ml-2 text-[11px] font-mono text-neutral-400">
+                    <span className="ml-2 text-[12.5px] font-mono text-neutral-400">
                       {currentService.terminalPath}
                     </span>
                   </div>
@@ -620,7 +638,7 @@ export default function HomePage() {
         <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 py-8 lg:py-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12">
             <div>
-              <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
                 SELECTED WORK
               </div>
               <h2 className="text-[38px] sm:text-[50px] lg:text-[56px] font-extrabold leading-[1.02] tracking-[-0.04em] text-neutral-950">
@@ -638,7 +656,7 @@ export default function HomePage() {
 
             <Link
               href="/work"
-              className="hidden sm:inline-flex items-center justify-center rounded-full border border-neutral-200 bg-white px-6 py-2.5 text-[13px] font-semibold text-neutral-900 transition-colors hover:bg-neutral-50 hover:border-neutral-300"
+              className="hidden sm:inline-flex items-center justify-center rounded-full border border-neutral-200 bg-white px-6 py-2.5 text-[14.5px] font-semibold text-neutral-900 transition-colors hover:bg-neutral-50 hover:border-neutral-300"
             >
               View all {projects.length} projects
             </Link>
@@ -658,7 +676,7 @@ export default function HomePage() {
           <div className="mt-6 sm:hidden">
             <Link
               href="/work"
-              className="flex w-full items-center justify-center rounded-full border border-neutral-200 bg-white py-3.5 text-[13px] font-mono font-medium text-neutral-900"
+              className="flex w-full items-center justify-center rounded-full border border-neutral-200 bg-white py-3.5 text-[14.5px] font-mono font-medium text-neutral-900"
             >
               View all {projects.length} projects →
             </Link>
@@ -671,7 +689,7 @@ export default function HomePage() {
           className="w-full bg-[#F6F6F4] border-t border-neutral-200/60 py-10 lg:py-16"
         >
           <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-            <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+            <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
               HOW WE WORK
             </div>
             <h2 className="text-[38px] sm:text-[50px] lg:text-[56px] font-extrabold leading-[1.03] tracking-[-0.04em] text-neutral-950">
@@ -718,13 +736,13 @@ export default function HomePage() {
                   className="rounded-2xl bg-white border border-neutral-200/80 p-6 sm:p-7 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.02)]"
                 >
                   <div>
-                    <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-5">
+                    <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-5">
                       {item.step}
                     </div>
                     <h3 className="text-[20px] font-extrabold leading-[1.2] tracking-tight text-neutral-950 whitespace-pre-line">
                       {item.title}
                     </h3>
-                    <p className="mt-3.5 text-[13px] leading-[1.6] text-neutral-600">
+                    <p className="mt-3.5 text-[14.5px] leading-[1.6] text-neutral-600">
                       {item.desc}
                     </p>
                   </div>
@@ -733,12 +751,12 @@ export default function HomePage() {
             </div>
 
             <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4">
-              <span className="text-[15px] font-medium text-neutral-700">
+              <span className="text-[16.5px] font-medium text-neutral-700">
                 Have a business bottleneck?
               </span>
               <Link
                 href="#contact"
-                className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[13.5px] font-semibold text-white transition-all hover:bg-neutral-800"
+                className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[16.5px] font-semibold text-white transition-all hover:bg-neutral-800"
               >
                 <span>Book a discovery call</span>
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#D4FF00] text-neutral-950 transition-transform duration-200 group-hover:rotate-45">
@@ -754,7 +772,7 @@ export default function HomePage() {
           <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
               <div className="lg:col-span-6">
-                <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-800/80 mb-4">
+                <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-800/80 mb-4">
                   03 / CAMPUS.DEBUG
                 </div>
                 <h2 className="text-[40px] sm:text-[52px] lg:text-[58px] font-extrabold leading-[1.02] tracking-[-0.04em] text-neutral-950">
@@ -766,7 +784,7 @@ export default function HomePage() {
                   <br />
                   code and deliver.
                 </h2>
-                <p className="mt-5 max-w-[440px] text-[15px] leading-[1.6] text-neutral-900/85">
+                <p className="mt-5 max-w-[440px] text-[16.5px] leading-[1.6] text-neutral-900/85">
                   End-to-end guidance for Web, Mobile, AI/ML, Cloud and IoT
                   projects, from architecture to the viva.
                 </p>
@@ -774,7 +792,7 @@ export default function HomePage() {
                 <div className="mt-8">
                   <Link
                     href="#contact"
-                    className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[13.5px] font-semibold text-white transition-all hover:bg-neutral-800"
+                    className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2 text-[16.5px] font-semibold text-white transition-all hover:bg-neutral-800"
                   >
                     <span>Book a consultation</span>
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#D4FF00] text-neutral-950 transition-transform duration-200 group-hover:rotate-45">
@@ -787,39 +805,39 @@ export default function HomePage() {
               <div className="lg:col-span-6 space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="rounded-2xl bg-white p-6 shadow-xs">
-                    <div className="text-[10px] font-mono text-neutral-400 mb-2">
+                    <div className="text-[12px] font-mono text-neutral-400 mb-2">
                       01
                     </div>
-                    <h3 className="text-[18px] font-extrabold tracking-tight text-neutral-950">
+                    <h3 className="text-[20px] font-extrabold tracking-tight text-neutral-950">
                       Clean architecture
                     </h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-neutral-600">
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-neutral-600">
                       Industry-standard structure your supervisor will
                       recognise.
                     </p>
                   </div>
 
                   <div className="rounded-2xl bg-white p-6 shadow-xs">
-                    <div className="text-[10px] font-mono text-neutral-400 mb-2">
+                    <div className="text-[12px] font-mono text-neutral-400 mb-2">
                       02
                     </div>
-                    <h3 className="text-[18px] font-extrabold tracking-tight text-neutral-950">
+                    <h3 className="text-[20px] font-extrabold tracking-tight text-neutral-950">
                       1-on-1 debugging
                     </h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-neutral-600">
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-neutral-600">
                       Live sessions to unblock the bugs that cost you weeks.
                     </p>
                   </div>
                 </div>
 
                 <div className="rounded-2xl bg-neutral-950 text-white p-6 sm:p-7 shadow-xs">
-                  <div className="text-[10px] font-mono text-[#D4FF00] mb-2">
+                  <div className="text-[12px] font-mono text-[#D4FF00] mb-2">
                     03
                   </div>
-                  <h3 className="text-[18px] font-extrabold tracking-tight text-white">
+                  <h3 className="text-[20px] font-extrabold tracking-tight text-white">
                     Viva and defense preparation
                   </h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-neutral-300">
+                  <p className="mt-2 text-[14.5px] leading-relaxed text-neutral-300">
                     Walk in knowing every design decision in your own system,
                     and why you made it.
                   </p>
@@ -836,7 +854,7 @@ export default function HomePage() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5">
-              <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
                 FAQ
               </div>
               <h2 className="text-[36px] sm:text-[44px] font-extrabold leading-[1.08] tracking-[-0.035em] text-neutral-950">
@@ -862,7 +880,7 @@ export default function HomePage() {
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
                       className="w-full flex items-center justify-between gap-4 text-left cursor-pointer group"
                     >
-                      <span className="text-[16px] sm:text-[17px] font-bold text-neutral-950 group-hover:text-neutral-700 transition-colors">
+                      <span className="text-[17.5px] sm:text-[18.5px] font-bold text-neutral-950 group-hover:text-neutral-700 transition-colors">
                         {item.question}
                       </span>
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-700 group-hover:border-neutral-400 transition-colors">
@@ -874,7 +892,7 @@ export default function HomePage() {
                       </span>
                     </button>
                     {isOpen && (
-                      <p className="mt-3.5 pr-10 text-[14px] leading-[1.65] text-neutral-600">
+                      <p className="mt-3.5 pr-10 text-[15.5px] leading-[1.65] text-neutral-600">
                         {item.answer}
                       </p>
                     )}
@@ -892,7 +910,7 @@ export default function HomePage() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
             <div className="lg:col-span-6">
-              <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3">
                 04 / LET&apos;S COLLABORATE
               </div>
               <h2 className="text-[42px] sm:text-[54px] lg:text-[60px] font-extrabold leading-[1.02] tracking-[-0.04em] text-neutral-950">
@@ -908,29 +926,29 @@ export default function HomePage() {
                   />
                 </span>
               </h2>
-              <p className="mt-5 max-w-[420px] text-[15px] leading-[1.6] text-neutral-600">
+              <p className="mt-5 max-w-[420px] text-[16.5px] leading-[1.6] text-neutral-600">
                 Tell us what is slowing your business down. An engineer, not a
                 salesperson, replies.
               </p>
 
               <div className="mt-8 pt-7 border-t border-neutral-200/80 space-y-5 max-w-[420px]">
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1">
+                  <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1">
                     EMAIL
                   </div>
                   <a
                     href="mailto:hasgtagcode.solutions@gmail.com"
-                    className="text-[16px] font-bold text-neutral-950 hover:underline decoration-[#D4FF00] decoration-2"
+                    className="text-[17.5px] font-bold text-neutral-950 hover:underline decoration-[#D4FF00] decoration-2"
                   >
                     hasgtagcode.solutions@gmail.com
                   </a>
                 </div>
 
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1">
+                  <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-1">
                     STUDIO
                   </div>
-                  <div className="text-[16px] font-bold text-neutral-950">
+                  <div className="text-[17.5px] font-bold text-neutral-950">
                     Colombo, Sri Lanka
                   </div>
                 </div>
@@ -965,7 +983,7 @@ export default function HomePage() {
                   <form onSubmit={handleContactSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11.5px] font-medium text-neutral-600 mb-1.5">
+                        <label className="block text-[14.5px] font-medium text-neutral-600 mb-1.5">
                           Name
                         </label>
                         <input
@@ -976,12 +994,12 @@ export default function HomePage() {
                           onChange={(e) =>
                             setFormState({ ...formState, name: e.target.value })
                           }
-                          className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                          className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[16.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11.5px] font-medium text-neutral-600 mb-1.5">
+                        <label className="block text-[14.5px] font-medium text-neutral-600 mb-1.5">
                           Email
                         </label>
                         <input
@@ -995,13 +1013,13 @@ export default function HomePage() {
                               email: e.target.value,
                             })
                           }
-                          className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                          className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[16.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11.5px] font-medium text-neutral-600 mb-1.5">
+                      <label className="block text-[14.5px] font-medium text-neutral-600 mb-1.5">
                         Company
                       </label>
                       <input
@@ -1014,12 +1032,12 @@ export default function HomePage() {
                             company: e.target.value,
                           })
                         }
-                        className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
+                        className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[16.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11.5px] font-medium text-neutral-600 mb-1.5">
+                      <label className="block text-[14.5px] font-medium text-neutral-600 mb-1.5">
                         What is the bottleneck?
                       </label>
                       <textarea
@@ -1033,13 +1051,13 @@ export default function HomePage() {
                             bottleneck: e.target.value,
                           })
                         }
-                        className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[13.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none resize-none"
+                        className="w-full rounded-lg border border-neutral-200 bg-white px-3.5 py-2.5 text-[16.5px] text-neutral-900 placeholder:text-neutral-400 focus:border-neutral-900 focus:outline-none resize-none"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="mt-2 w-full rounded-full bg-neutral-950 py-3.5 text-[13.5px] font-semibold text-white transition-colors hover:bg-neutral-800 cursor-pointer"
+                      className="mt-2 w-full rounded-full bg-neutral-950 py-3.5 text-[16.5px] font-semibold text-white transition-colors hover:bg-neutral-800 cursor-pointer"
                     >
                       Let&apos;s build the fix
                     </button>

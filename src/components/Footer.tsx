@@ -9,14 +9,14 @@ export function Footer() {
           <div className="max-w-xs">
             <Link
               href="/"
-              className="inline-flex items-center text-[20px] font-extrabold tracking-tight text-neutral-950"
+              className="inline-flex items-center text-[22px] font-extrabold tracking-tight text-neutral-950"
             >
               <span className="inline-flex items-center justify-center bg-[#D4FF00] px-1 py-0.5 leading-none mr-0.5 rounded-[2px]">
                 #
               </span>
               <span>code</span>
             </Link>
-            <p className="mt-4 text-[13px] leading-relaxed text-neutral-600">
+            <p className="mt-4 text-[14.5px] leading-relaxed text-neutral-600">
               Custom ERP, web applications and backend engineering for growing
               businesses.
             </p>
@@ -24,10 +24,10 @@ export function Footer() {
 
           <div className="flex gap-16 sm:gap-24">
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3.5">
                 STUDIO
               </div>
-              <ul className="space-y-2.5 text-[13px] font-medium text-neutral-800">
+              <ul className="space-y-2.5 text-[14.5px] font-medium text-neutral-800">
                 <li>
                   <Link
                     href="/work"
@@ -64,10 +64,10 @@ export function Footer() {
             </div>
 
             <div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3.5">
+              <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-3.5">
                 ELSEWHERE
               </div>
-              <ul className="space-y-2.5 text-[13px] font-medium text-neutral-800">
+              <ul className="space-y-2.5 text-[14.5px] font-medium text-neutral-800">
                 <li>
                   <a
                     href="https://linkedin.com"
@@ -80,7 +80,7 @@ export function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/code.solutions.lk/"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-neutral-950 transition-colors"
@@ -110,7 +110,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-neutral-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] font-mono text-neutral-500">
+        <div className="pt-6 border-t border-neutral-200/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[12.5px] font-mono text-neutral-500">
           <div>© 2026 #code · Colombo, Sri Lanka</div>
           <div>Engineering scalable solutions. Building the fix.</div>
         </div>

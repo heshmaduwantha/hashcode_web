@@ -1,221 +1,611 @@
 /* =========================================================================
-   #code — liquid-glass page loader
-   Pure CSS + a ~60-line controller (code-loader.js). No dependencies.
-   All classes are namespaced .cl-* ; the only globals are
-   html.cl-lock, html.cl-done, html.cl-skip and [data-cl-reveal].
+   #code — Creative High-Tech Studio Page Loader (Light Mood)
+   High-performance GPU-accelerated styling with architectural precision.
+   Brand tokens: Lime (#D4FF00), Paper (#FFFFFF, #F8F8F5), Deep Ink (#0A0A0C).
    ========================================================================= */
 
 .cl {
-  /* brand tokens (white theme) */
-  --cl-ink: #0B0B0B;
-  --cl-lime: #DFFF00;
-  --cl-paper: #FFFFFF;
-  --cl-paper-2: #F7F7F4;
-  --cl-rule: #E5E5DE;
-  --cl-muted: #6B6B73;
-  --cl-body: #3A3A42;
-  --cl-fringe-a: #B5D300;   /* lime dispersion fringe   */
-  --cl-fringe-b: #8C7BFF;   /* violet dispersion fringe */
+  --cl-lime: #D4FF00;
+  --cl-lime-deep: #B8E600;
+  --cl-ink: #0A0A0C;
+  --cl-body: #3F3F46;
+  --cl-muted: #71717A;
+  --cl-bg: #FFFFFF;
+  --cl-paper: #F8F8F5;
+  --cl-border: rgba(0, 0, 0, 0.07);
+  --cl-border-card: rgba(0, 0, 0, 0.06);
   --cl-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  /* geometry — desktop */
-  --cl-halo-0: 270px;  --cl-halo-w: 560px; --cl-halo-h: 440px; --cl-halo-r: 124px;
-  --cl-lens-0: 168px;  --cl-lens-w: 420px; --cl-lens-h: 300px; --cl-lens-r: 78px;
-  --cl-word: 120px;    --cl-tag: 14px;     --cl-gap: 10px;
-  --cl-slide: 300px;   --cl-fringe: 9px;   --cl-smear: 7px;
-  --cl-center: 46%;    --cl-status-gap: 262px; --cl-status-w: 300px;
-
-  /* timing — keep --cl-in equal to data-cl-min in the markup */
-  --cl-in: 2.6s;
+  --cl-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
 
   position: fixed;
   inset: 0;
-  z-index: 9999;
-  background: radial-gradient(ellipse 70% 60% at 50% var(--cl-center), var(--cl-paper) 0%, var(--cl-paper-2) 100%);
-  transition: opacity .45s ease .1s, visibility 0s linear .6s;
-  /* failsafe: if the controller never runs, get out of the way after 10s */
+  z-index: 99999;
+  background: radial-gradient(ellipse 90% 80% at 50% 48%, var(--cl-bg) 0%, var(--cl-paper) 100%);
+  color: var(--cl-ink);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: var(--cl-mono);
+
+  /* Exit transition: Silky smooth luminous fade & scale */
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 0.65s;
+  will-change: opacity, transform;
   animation: cl-failsafe 0s linear 10s forwards;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .cl {
-    --cl-halo-0: 160px;  --cl-halo-w: 300px; --cl-halo-h: 250px; --cl-halo-r: 76px;
-    --cl-lens-0: 104px;  --cl-lens-w: 236px; --cl-lens-h: 180px; --cl-lens-r: 50px;
-    --cl-word: 68px;     --cl-tag: 9px;      --cl-gap: 6px;
-    --cl-slide: 170px;   --cl-fringe: 6px;   --cl-smear: 4px;
-    --cl-center: 44%;    --cl-status-gap: 160px; --cl-status-w: 220px;
+    padding: 36px 48px;
   }
 }
 
-html.cl-lock, html.cl-lock body { overflow: hidden; }
-.cl.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* the site's line motif, drawn during the intro */
-.cl-line { position: absolute; inset: 0; width: 100%; height: 100%; }
-.cl-line--m { display: none; }
-@media (max-width: 640px) { .cl-line--d { display: none; } .cl-line--m { display: block; } }
-.cl-line path {
-  fill: none; stroke: var(--cl-ink); stroke-opacity: .9; stroke-width: 1.75;
-  stroke-dasharray: 1; stroke-dashoffset: 1;
-  animation: cl-draw var(--cl-in) cubic-bezier(.45, 0, .2, 1) forwards;
+html.cl-lock, html.cl-lock body {
+  overflow: hidden !important;
 }
 
-/* stage: halo + lens share one grid cell so they stay centred while resizing */
+.cl.is-leaving {
+  opacity: 0;
+  transform: scale(1.025);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Background Blueprint Grid (Subtle Light Theme) */
+.cl-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 36px 36px;
+  background-position: center center;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, #000 45%, transparent 95%);
+}
+
+/* Ambient Lime Core Glow */
+.cl-ambient-glow {
+  position: absolute;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(212, 255, 0, 0.32) 0%, rgba(212, 255, 0, 0.08) 45%, transparent 70%);
+  filter: blur(48px);
+  pointer-events: none;
+  animation: cl-ambient-pulse 4s ease-in-out infinite alternate;
+}
+
+/* Background Curved Line Motif */
+.cl-bg-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cl-bg-line path {
+  fill: none;
+  stroke: #E4E4DE;
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cl-draw-bg-line 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Traveling Laser Scanline */
+.cl-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 255, 0, 0.6) 50%, transparent 100%);
+  pointer-events: none;
+  animation: cl-scan 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ---------------------------------------------------------------- Top Telemetry */
+.cl-telemetry {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  color: var(--cl-muted);
+}
+
+.cl-telemetry-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cl-pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--cl-lime-deep);
+  box-shadow: 0 0 8px rgba(184, 230, 0, 0.7);
+}
+
+.cl-pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--cl-lime-deep);
+  animation: cl-pulse-ring 1.8s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+.cl-telemetry-title {
+  font-weight: 700;
+  color: var(--cl-ink);
+}
+
+.cl-telemetry-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cl-telemetry-meta {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .cl-telemetry-meta {
+    display: inline-block;
+    color: var(--cl-muted);
+  }
+}
+
+.cl-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #FFFFFF;
+  color: var(--cl-ink);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* ---------------------------------------------------------------- Center Stage */
 .cl-stage {
-  position: absolute; left: 0; right: 0; top: 0;
-  height: calc(var(--cl-center) * 2);
-  display: grid; place-items: center;
-}
-.cl-halo, .cl-lens { grid-area: 1 / 1; box-sizing: border-box; }
-
-.cl-halo {
-  width: var(--cl-halo-w); height: var(--cl-halo-h); border-radius: var(--cl-halo-r);
-  background: rgba(255, 255, 255, .6);
-  border: 1px solid var(--cl-rule);
-  box-shadow:
-    inset 0 1px 0 #FFFFFF,
-    inset 0 -18px 40px rgba(11, 11, 11, .035),
-    0 40px 90px rgba(11, 11, 11, .08),
-    0 2px 6px rgba(11, 11, 11, .04);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-  animation: cl-halo-in var(--cl-in) linear both;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
 }
 
-.cl-lens {
-  position: relative; overflow: hidden; isolation: isolate;
-  width: var(--cl-lens-w); height: var(--cl-lens-h); border-radius: var(--cl-lens-r);
-  background: linear-gradient(180deg, #FCFCFA 0%, #EEEEE8 100%);
-  border: 1px solid rgba(255, 255, 255, .9);
-  box-shadow:
-    inset 0 2px 2px rgba(255, 255, 255, .95),
-    inset 0 -14px 28px rgba(11, 11, 11, .07),
-    inset 0 0 0 1px rgba(11, 11, 11, .05),
-    0 22px 44px rgba(11, 11, 11, .12);
-  animation: cl-lens-in var(--cl-in) linear both;
+/* Rotating HUD Reticle */
+.cl-reticle {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  animation: cl-spin 22s linear infinite;
 }
 
-/* four stacked copies of the wordmark make the glass:
-   smear (rim) + two colour fringes (rim) + crisp core (centre) */
-.cl-layer { position: absolute; inset: 0; display: grid; place-items: center; }
-.cl-rim {
-  -webkit-mask-image: radial-gradient(closest-side, transparent 50%, #000 96%);
-          mask-image: radial-gradient(closest-side, transparent 50%, #000 96%);
-}
-.cl-core {
-  -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
-          mask-image: radial-gradient(closest-side, #000 70%, transparent 100%);
-}
-.cl-track {
-  display: flex; flex-direction: column; align-items: center; gap: var(--cl-gap);
-  white-space: nowrap; color: var(--cl-ink);
-  animation: cl-slide var(--cl-in) linear both;
-}
-.cl-word {
-  font-family: var(--cl-mono); font-weight: 700;
-  font-size: var(--cl-word); line-height: 1; letter-spacing: -0.05em;
-}
-.cl-hash { background: var(--cl-lime); padding: 0 .06em; }
-.cl-tag {
-  font-family: var(--cl-mono); font-size: var(--cl-tag);
-  letter-spacing: .28em; color: var(--cl-body);
-}
-.cl-smear .cl-track { scale: 1.22; filter: blur(var(--cl-smear)); opacity: .5; }
-.cl-fa, .cl-fb { mix-blend-mode: multiply; }
-.cl-fa .cl-track { color: var(--cl-fringe-a); margin-left: calc(var(--cl-fringe) * -1); }
-.cl-fb .cl-track { color: var(--cl-fringe-b); margin-left: var(--cl-fringe); }
-.cl-fa .cl-hash, .cl-fb .cl-hash, .cl-smear .cl-hash { background: none; }
-.cl-fa .cl-tag, .cl-fb .cl-tag { color: inherit; }
-.cl-core .cl-track {
-  animation: cl-slide var(--cl-in) linear both, cl-focus var(--cl-in) ease-out both;
+@media (min-width: 640px) {
+  .cl-reticle {
+    width: 340px;
+    height: 340px;
+  }
 }
 
-/* light on the glass */
-.cl-glare {
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, .9) 0%, rgba(255, 255, 255, 0) 34%),
-    radial-gradient(90% 60% at 50% 115%, rgba(11, 11, 11, .07), transparent 70%);
-}
-.cl-caustic {
-  position: absolute; right: -10%; bottom: -18%; width: 55%; height: 56%; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(223, 255, 0, .6), rgba(223, 255, 0, 0));
-  filter: blur(8px); mix-blend-mode: multiply; pointer-events: none;
-}
-.cl-sweep {
-  position: absolute; inset: -20% -60%; pointer-events: none;
-  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .85) 49%, rgba(223, 255, 0, .35) 52%, transparent 60%);
-  translate: -70% 0;
-  animation: cl-sweep .8s cubic-bezier(.4, 0, .2, 1) calc(var(--cl-in) - .25s) both;
+/* Animated #code Brand Hero (Card & Big Hash removed) */
+.cl-brand-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: cl-hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* build status under the glass */
-.cl-status {
-  position: absolute; left: 50%;
-  top: calc(var(--cl-center) + var(--cl-status-gap));
-  width: var(--cl-status-w); margin-left: calc(var(--cl-status-w) / -2);
-  display: flex; flex-direction: column; gap: 10px;
+.cl-brand-title {
+  font-family: var(--cl-sans);
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--cl-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .cl-brand-title {
+    font-size: 76px;
+    gap: 8px;
+  }
+}
+
+/* The Animated Lime # Badge */
+.cl-brand-hash {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cl-lime);
+  color: var(--cl-ink);
+  padding: 0 14px;
+  height: 0.9em;
+  border-radius: 8px;
+  font-weight: 900;
+  box-shadow: 0 4px 20px rgba(212, 255, 0, 0.55), 0 0 10px rgba(212, 255, 0, 0.4);
+  animation: cl-hash-pulse 2s ease-in-out infinite alternate;
+}
+
+@media (min-width: 640px) {
+  .cl-brand-hash {
+    padding: 0 18px;
+    border-radius: 12px;
+  }
+}
+
+/* The Animated "code" Text */
+.cl-brand-text {
+  display: inline-block;
+  background: linear-gradient(135deg, #0A0A0C 0%, #27272A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.045em;
+  animation: cl-text-reveal 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* The Animated Tagline */
+.cl-brand-tag {
+  margin-top: 14px;
   font-family: var(--cl-mono);
-  animation: cl-status-in .5s ease .45s both;
-}
-.cl-row {
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 12px; letter-spacing: .06em; color: var(--cl-muted);
-}
-.cl-pct { color: var(--cl-ink); font-weight: 500; font-variant-numeric: tabular-nums; }
-.cl-bar { height: 3px; border-radius: 999px; background: var(--cl-rule); overflow: hidden; }
-.cl-bar > span {
-  display: block; height: 100%; background: var(--cl-ink);
-  transform: scaleX(0); transform-origin: left center;
-}
-.cl-caret {
-  display: inline-block; width: 7px; height: 13px; margin-left: 4px; vertical-align: -2px;
-  background: var(--cl-ink); animation: cl-blink 1.1s steps(1) infinite;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  color: var(--cl-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  animation: cl-tag-fade 1s ease 0.25s both;
 }
 
-/* exit (controller adds .is-leaving) */
-.cl.is-leaving .cl-halo   { animation: cl-halo-out .6s cubic-bezier(.7, 0, .84, 0) forwards; }
-.cl.is-leaving .cl-lens   { animation: cl-lens-out .55s cubic-bezier(.5, 0, .75, 0) forwards; }
-.cl.is-leaving .cl-status { animation: cl-fade-out .2s ease forwards; }
-.cl.is-leaving .cl-line   { opacity: 0; transition: opacity .4s ease .1s; }
+@media (min-width: 640px) {
+  .cl-brand-tag {
+    font-size: 15px;
+    letter-spacing: 0.32em;
+    margin-top: 18px;
+  }
+}
 
-/* page content rise-in after the loader (opt-in with data-cl-reveal) */
-html.cl-lock [data-cl-reveal] { opacity: 0; translate: 0 28px; }
+/* ---------------------------------------------------------------- Console & Progress */
+.cl-console {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+/* Terminal Log Stream (Clean Light Box) */
+.cl-terminal-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--cl-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  color: var(--cl-ink);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cl-term-prompt {
+  color: var(--cl-ink);
+  font-weight: 800;
+  background: var(--cl-lime);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.cl-term-text {
+  font-family: var(--cl-mono);
+  font-weight: 500;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cl-term-caret {
+  display: inline-block;
+  width: 6px;
+  height: 12px;
+  background-color: var(--cl-ink);
+  margin-left: 2px;
+  animation: cl-blink 0.9s steps(1) infinite;
+}
+
+/* Meter Row (Visualizer + Percentage) */
+.cl-meter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* Audio / Equalizer Bars */
+.cl-visualizer {
+  display: flex;
+  align-items: flex-end;
+  gap: 3.5px;
+  height: 20px;
+}
+
+.cl-eq-bar {
+  display: inline-block;
+  width: 3.5px;
+  border-radius: 1.5px;
+  background-color: var(--cl-lime);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  animation: cl-eq 1.2s ease-in-out infinite alternate;
+}
+
+.cl-eq-bar.b1 { height: 35%; animation-delay: 0.1s; }
+.cl-eq-bar.b2 { height: 75%; animation-delay: 0.3s; }
+.cl-eq-bar.b3 { height: 45%; animation-delay: 0.2s; }
+.cl-eq-bar.b4 { height: 95%; animation-delay: 0.45s; }
+.cl-eq-bar.b5 { height: 60%; animation-delay: 0.15s; }
+.cl-eq-bar.b6 { height: 85%; animation-delay: 0.35s; }
+.cl-eq-bar.b7 { height: 40%; animation-delay: 0.5s; }
+.cl-eq-bar.b8 { height: 70%; animation-delay: 0.25s; }
+
+/* Large Tabular Percentage */
+.cl-pct-wrap {
+  font-family: var(--cl-mono);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--cl-ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .cl-pct-wrap {
+    font-size: 38px;
+  }
+}
+
+/* Laser Progress Bar Track */
+.cl-progress-track {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: visible;
+}
+
+.cl-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #D4FF00 0%, #B8E600 100%);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  box-shadow: 0 0 10px rgba(184, 230, 0, 0.6);
+}
+
+.cl-progress-flare {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cl-ink);
+  border: 2px solid var(--cl-lime);
+  box-shadow: 0 0 8px rgba(212, 255, 0, 0.8);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* ---------------------------------------------------------------- Page Reveal */
+html.cl-lock [data-cl-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
 html.cl-done [data-cl-reveal] {
-  animation: cl-reveal .8s cubic-bezier(.2, .7, .2, 1) calc(.15s + var(--cl-delay, 0ms)) both;
+  animation: cl-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) calc(0.1s + var(--cl-delay, 0ms)) both;
 }
-html.cl-skip [data-cl-reveal] { animation: none; }
 
-/* ---------------------------------------------------------------- keyframes */
-@keyframes cl-halo-in {
-  0%   { width: var(--cl-halo-0); height: var(--cl-halo-0); border-radius: calc(var(--cl-halo-0) / 2); opacity: 0; scale: .82; }
-  19%  { width: var(--cl-halo-0); height: var(--cl-halo-0); border-radius: calc(var(--cl-halo-0) / 2); opacity: 1; scale: 1;
-         animation-timing-function: cubic-bezier(.65, 0, .2, 1); }
-  90%, 100% { width: var(--cl-halo-w); height: var(--cl-halo-h); border-radius: var(--cl-halo-r); opacity: 1; scale: 1; }
+html.cl-skip [data-cl-reveal] {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
-@keyframes cl-lens-in {
-  0%   { width: var(--cl-lens-0); height: var(--cl-lens-0); border-radius: calc(var(--cl-lens-0) / 2); opacity: 0; scale: .7; }
-  19%  { width: var(--cl-lens-0); height: var(--cl-lens-0); border-radius: calc(var(--cl-lens-0) / 2); opacity: 1; scale: 1;
-         animation-timing-function: cubic-bezier(.65, 0, .2, 1); }
-  90%, 100% { width: var(--cl-lens-w); height: var(--cl-lens-h); border-radius: var(--cl-lens-r); opacity: 1; scale: 1; }
+
+/* ---------------------------------------------------------------- Keyframes */
+@keyframes cl-hash-pulse {
+  0% {
+    transform: scale(0.96);
+    box-shadow: 0 2px 10px rgba(212, 255, 0, 0.4);
+  }
+  100% {
+    transform: scale(1.04);
+    box-shadow: 0 6px 28px rgba(212, 255, 0, 0.7), 0 0 15px rgba(212, 255, 0, 0.5);
+  }
 }
-@keyframes cl-slide {
-  0%, 19% { translate: var(--cl-slide) 0; animation-timing-function: cubic-bezier(.3, .1, .2, 1); }
-  100%    { translate: 0 0; }
+
+@keyframes cl-hero-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
-@keyframes cl-focus   { 0%, 13% { filter: blur(10px); } 65%, 100% { filter: blur(0); } }
-@keyframes cl-draw    { to { stroke-dashoffset: 0; } }
-@keyframes cl-sweep   { from { translate: -70% 0; } to { translate: 70% 0; } }
-@keyframes cl-status-in { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
-@keyframes cl-blink   { 50% { opacity: 0; } }
-@keyframes cl-halo-out { from { opacity: 1; scale: 1; } to { opacity: 0; scale: 1.3; } }
-@keyframes cl-lens-out { 0% { opacity: 1; scale: 1; } 55% { opacity: .25; } 100% { opacity: 0; scale: 2.2; } }
-@keyframes cl-fade-out { to { opacity: 0; } }
-@keyframes cl-reveal  { from { opacity: 0; translate: 0 28px; } to { opacity: 1; translate: 0 0; } }
-@keyframes cl-failsafe { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+@keyframes cl-text-reveal {
+  from {
+    opacity: 0;
+    letter-spacing: 0.04em;
+  }
+  to {
+    opacity: 1;
+    letter-spacing: -0.045em;
+  }
+}
+
+@keyframes cl-tag-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cl-draw-bg-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes cl-scan {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    top: 105%;
+    opacity: 0;
+  }
+}
+
+@keyframes cl-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cl-ambient-pulse {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  100% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
+@keyframes cl-pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes cl-eq {
+  0% {
+    height: 25%;
+    opacity: 0.5;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes cl-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes cl-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cl-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .cl { display: none !important; }
-  html.cl-lock, html.cl-lock body { overflow: auto; }
-  [data-cl-reveal] { opacity: 1 !important; translate: none !important; animation: none !important; }
+  .cl {
+    display: none !important;
+  }
+  html.cl-lock, html.cl-lock body {
+    overflow: auto !important;
+  }
+  [data-cl-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
 }

@@ -28,7 +28,7 @@ export default function WorkPage() {
 
       <main className="relative z-10">
         <section className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-20 pb-10">
-          <div className="text-[10.5px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
+          <div className="text-[12px] font-mono uppercase tracking-[0.16em] text-neutral-400 mb-4">
             WORK · 2024 — 2026
           </div>
 
@@ -48,7 +48,7 @@ export default function WorkPage() {
             </div>
 
             <div className="lg:col-span-4 pb-1">
-              <p className="text-[14.5px] sm:text-[15px] leading-[1.65] text-neutral-600">
+              <p className="text-[17.5px] sm:text-[16.5px] leading-[1.65] text-neutral-600">
                 Web platforms and business systems for clients in Sri Lanka, the
                 UK and Dubai. Every one is live. Click through and use it.
               </p>
@@ -60,7 +60,7 @@ export default function WorkPage() {
               <button
                 type="button"
                 onClick={() => setFilter("ALL")}
-                className={`rounded-full px-4 py-2 text-[11.5px] font-mono transition-all cursor-pointer ${
+                className={`rounded-full px-4 py-2 text-[17.5px] font-mono transition-all cursor-pointer ${
                   filter === "ALL"
                     ? "bg-neutral-950 text-white font-semibold"
                     : "border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
@@ -72,7 +72,7 @@ export default function WorkPage() {
               <button
                 type="button"
                 onClick={() => setFilter("WEB")}
-                className={`rounded-full px-4 py-2 text-[11.5px] font-mono transition-all cursor-pointer ${
+                className={`rounded-full px-4 py-2 text-[17.5px] font-mono transition-all cursor-pointer ${
                   filter === "WEB"
                     ? "bg-neutral-950 text-white font-semibold"
                     : "border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
@@ -84,7 +84,7 @@ export default function WorkPage() {
               <button
                 type="button"
                 onClick={() => setFilter("ERP")}
-                className={`rounded-full px-4 py-2 text-[11.5px] font-mono transition-all cursor-pointer ${
+                className={`rounded-full px-4 py-2 text-[17.5px] font-mono transition-all cursor-pointer ${
                   filter === "ERP"
                     ? "bg-neutral-950 text-white font-semibold"
                     : "border border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
@@ -94,7 +94,7 @@ export default function WorkPage() {
               </button>
             </div>
 
-            <div className="text-[11.5px] font-mono text-neutral-400">
+            <div className="text-[17.5px] font-mono text-neutral-400">
               Showing {filteredProjects.length} of {projects.length}
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function WorkPage() {
 
             <Link
               href="/#contact"
-              className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2.5 text-[14px] font-semibold text-white transition-all hover:bg-neutral-800"
+              className="group inline-flex items-center gap-3.5 rounded-full bg-neutral-950 pl-6 pr-2 py-2.5 text-[15.5px] font-semibold text-white transition-all hover:bg-neutral-800"
             >
               <span>Let&apos;s build the fix</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D4FF00] text-neutral-950 transition-transform duration-200 group-hover:rotate-45">

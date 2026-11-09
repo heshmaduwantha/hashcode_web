@@ -35,14 +35,14 @@ export function ProjectCard({
       <div className="pt-4 pb-1 px-1.5 flex items-end justify-between gap-3">
         <div>
           {variant === "home" && (
-            <div className="text-[10px] font-mono uppercase tracking-[0.14em] text-neutral-400 mb-1">
+            <div className="text-[12px] font-mono uppercase tracking-[0.14em] text-neutral-400 mb-1">
               {num} / {project.category}
             </div>
           )}
-          <h3 className="text-[17px] font-bold tracking-tight text-neutral-950 group-hover:text-black">
+          <h3 className="text-[19px] font-bold tracking-tight text-neutral-950 group-hover:text-black">
             {project.title}
           </h3>
-          <p className="text-[12.5px] text-neutral-500 mt-0.5">
+          <p className="text-[14px] text-neutral-500 mt-0.5">
             {project.subtitle}
           </p>
         </div>

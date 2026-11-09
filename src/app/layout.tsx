@@ -12,9 +12,17 @@ import { ProjectsProvider } from "@/context/ProjectsContext";
 import { getProjects } from "@/lib/projects";
 
 export const metadata: Metadata = {
-  title: "#code — Engineering Scalable Solutions | Colombo Software Studio",
+  title: "#code",
   description:
     "An engineering-first software studio in Colombo. Web platforms, custom ERP and POS, automation and backends for growing businesses.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

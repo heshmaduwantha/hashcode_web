@@ -19,7 +19,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 sm:px-8 lg:px-12 h-[72px]">
         <Link
           href="/"
-          className="inline-flex items-center text-[20px] font-extrabold tracking-tight text-neutral-950"
+          className="inline-flex items-center text-[22px] font-extrabold tracking-tight text-neutral-950"
         >
           <span className="inline-flex items-center justify-center bg-[#D4FF00] px-1 py-0.5 leading-none mr-0.5 rounded-[2px]">
             #
@@ -27,7 +27,7 @@ export function Navbar() {
           <span>code</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-[13.5px] font-medium text-neutral-700">
+        <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium text-neutral-700">
           <Link
             href="/work"
             className={`transition-colors hover:text-neutral-950 ${
@@ -67,7 +67,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <Link
             href="/#contact"
-            className="group inline-flex items-center gap-3 rounded-full bg-neutral-950 pl-5 pr-1.5 py-1.5 text-[13px] font-semibold text-white transition-all hover:bg-neutral-800"
+            className="group inline-flex items-center gap-3 rounded-full bg-neutral-950 pl-5 pr-1.5 py-1.5 text-[14.5px] font-semibold text-white transition-all hover:bg-neutral-800"
           >
             <span>Start a project</span>
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#D4FF00] text-neutral-950 transition-transform duration-200 group-hover:rotate-45">
